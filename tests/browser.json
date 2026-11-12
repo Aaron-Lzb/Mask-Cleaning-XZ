@@ -1,17 +1,7 @@
 [
   [
     "eval",
-    "if(!document.title.startsWith('Photomask-Cleaner'))throw Error('Project title');if(CleaningScene.colors.mask!=='#b9d8e8'||document.querySelector('.fluid-legend span:nth-child(2) i').style.backgroundColor!=='rgb(185, 216, 232)')throw Error('Mask legend');if(performance.getEntriesByType('resource').length)throw Error('Unexpected external resources');cleaning.seek(100);window.originalTheme=document.body.className"
-  ],
-  [
-    "key",
-    " ",
-    "#theme",
-    "Space"
-  ],
-  [
-    "eval",
-    "if(cleaning.playing||cleaning.time!==100||document.body.className===originalTheme)throw Error('Native theme Space');cleaning.seek(100)"
+    "if(!document.title.startsWith('Photomask-Cleaner'))throw Error('Project title');if(CleaningScene.colors.mask!=='#b9d8e8'||document.querySelector('.fluid-legend span:nth-child(2) i').style.backgroundColor!=='rgb(185, 216, 232)')throw Error('Mask legend');if(performance.getEntriesByType('resource').length)throw Error('Unexpected external resources');cleaning.seek(100);if(document.getElementById('theme')||document.body.classList.contains('light')||getComputedStyle(document.body).backgroundColor!=='rgb(255, 255, 255)')throw Error('Single bright theme')"
   ],
   [
     "key",
@@ -81,7 +71,7 @@
   ],
   [
     "eval",
-    "(async()=>{cleaning.setView('iso');cleaning.seek(115);const proto=WebGLRenderingContext.prototype,old=proto.bufferData;let writes=0;proto.bufferData=function(...a){if(a[2]===this.STATIC_DRAW)writes++;return old.apply(this,a)};const count=fn=>{writes=0;fn();return writes},frame=()=>new Promise(requestAnimationFrame),r={};try{r.unchanged=count(()=>cleaning.seek(115));r.view=count(()=>cleaning.setView('top'));r.sameView=count(()=>cleaning.setView('top'));r.theme=count(()=>document.getElementById('theme').click());writes=0;document.getElementById('machine').style.width='calc(100% - 2px)';await frame();await frame();r.resize=writes;document.getElementById('machine').style.width='';await frame();await frame();cleaning.setView('grip');r.movingGripCamera=count(()=>cleaning.seek(16));cleaning.setView('iso');cleaning.seek(115);}finally{proto.bufferData=old}if(r.unchanged!==0||r.sameView!==0||r.view!==1||r.theme!==1||r.resize!==1||r.movingGripCamera!==1)throw Error('Static cache invalidation '+JSON.stringify(r));return JSON.stringify({staticCache:'PASS',...r})})()"
+    "(async()=>{cleaning.setView('iso');cleaning.seek(115);const proto=WebGLRenderingContext.prototype,old=proto.bufferData;let writes=0;proto.bufferData=function(...a){if(a[2]===this.STATIC_DRAW)writes++;return old.apply(this,a)};const count=fn=>{writes=0;fn();return writes},frame=()=>new Promise(requestAnimationFrame),r={};try{r.unchanged=count(()=>cleaning.seek(115));r.view=count(()=>cleaning.setView('top'));r.sameView=count(()=>cleaning.setView('top'));writes=0;document.getElementById('machine').style.width='calc(100% - 2px)';await frame();await frame();r.resize=writes;document.getElementById('machine').style.width='';await frame();await frame();cleaning.setView('grip');r.movingGripCamera=count(()=>cleaning.seek(16));cleaning.setView('iso');cleaning.seek(115);}finally{proto.bufferData=old}if(r.unchanged!==0||r.sameView!==0||r.view!==1||r.resize!==1||r.movingGripCamera!==1)throw Error('Static cache invalidation '+JSON.stringify(r));return JSON.stringify({staticCache:'PASS',...r})})()"
   ],
   [
     "eval",

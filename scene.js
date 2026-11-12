@@ -302,7 +302,7 @@ if(ctx){
 }else{fallback=document.createElement('canvas');canvas.replaceWith(fallback);fallback.id='machine';fallback.setAttribute('aria-label',canvas.getAttribute('aria-label'));fallback.setAttribute('role','img');document.getElementById('rendernote').textContent='兼容投影模式（无 WebGL）'}
 function camera(view){if(view==='grip')return {r:[0,1,0],u:[0,0,1],v:[1,0,0]};if(view==='top')return {r:[1,0,0],u:[0,1,0],v:[0,0,1]};let a=(view==='front'?0:view==='cleaner'?20:15)*Math.PI/180,e=(view==='front'?22:view==='cleaner'?23:32)*Math.PI/180;return {r:[Math.cos(a),Math.sin(a),0],u:[-Math.sin(a)*Math.sin(e),Math.cos(a)*Math.sin(e),Math.cos(e)],v:[Math.sin(a)*Math.cos(e),-Math.cos(a)*Math.cos(e),Math.sin(e)]}}
 let fixedCache=null;
-function render(m,view='iso',light=true){
+function render(m,view='iso'){
  if(ctx&&ctx.isContextLost())return {webgl:true,contextLost:true,glError:ctx.CONTEXT_LOST_WEBGL};
  const surface=fallback||canvas,rect=surface.getBoundingClientRect(),dpr=Math.min(devicePixelRatio,1.5);
  const w=Math.round(rect.width*dpr),h=Math.round(rect.height*dpr);if(surface.width!==w||surface.height!==h){surface.width=w;surface.height=h}
@@ -314,14 +314,14 @@ function render(m,view='iso',light=true){
  const inView=f=>gripView?f.points.every(p=>p[0]>=focusX-66&&p[0]<=focusX+66&&p[1]>=-45&&p[1]<=218):!close||Math.max(...f.points.map(p=>p[0]))>=568;
  const allDynamic=moving(m).filter(inView),water=spray(m),movingOpaque=allDynamic.filter(f=>f.alpha===1);
  const translucent=[...fixedTransparent.filter(inView),...allDynamic.filter(f=>f.alpha<1),...water].sort((a,b)=>a.points.reduce((s,p)=>s+dot(p,cam.v),0)/a.points.length-b.points.reduce((s,p)=>s+dot(p,cam.v),0)/b.points.length);
- const tint=f=>{let c=hex(colors[f.color].slice(1));if(!light)c=c.map((v,i)=>Math.min(1,v+(i===2?.012:0)));return [...c,f.alpha]};
+ const tint=f=>[...hex(colors[f.color].slice(1)),f.alpha];
  if(ctx){
   ctx.viewport(0,0,w,h);ctx.clearColor(0,0,0,0);ctx.clear(ctx.COLOR_BUFFER_BIT|ctx.DEPTH_BUFFER_BIT);ctx.useProgram(program);ctx.uniform3fv(viewLoc,cam.v);ctx.enable(ctx.DEPTH_TEST);ctx.depthFunc(ctx.LEQUAL);ctx.disable(ctx.CULL_FACE);
   for(let attr of [posLoc,colorLoc,normalLoc])ctx.enableVertexAttribArray(attr);
   const bind=b=>{ctx.bindBuffer(ctx.ARRAY_BUFFER,b);ctx.vertexAttribPointer(posLoc,3,ctx.FLOAT,false,40,0);ctx.vertexAttribPointer(colorLoc,4,ctx.FLOAT,false,40,12);ctx.vertexAttribPointer(normalLoc,3,ctx.FLOAT,false,40,28)};
   const pack=fs=>{let data=[];for(let f of fs){let c=tint(f);for(let i=1;i<f.points.length-1;i++)for(let j of [0,i,i+1])data.push(...project(f.points[j]),...c,...(f.normals?f.normals[j]:f.normal))}return new Float32Array(data)};
-  // Projected static vertices change only with camera, viewport or theme.
-  const cacheKey=`${view}:${w}:${h}:${light}:${gripView?focusX:0}`;
+  // Projected static vertices change only with camera or viewport.
+  const cacheKey=`${view}:${w}:${h}:${gripView?focusX:0}`;
   if(!fixedCache||fixedCache.key!==cacheKey){const data=pack(fixed.filter(f=>f.alpha===1&&inView(f)));ctx.bindBuffer(ctx.ARRAY_BUFFER,staticBuffer);ctx.bufferData(ctx.ARRAY_BUFFER,data,ctx.STATIC_DRAW);fixedCache={key:cacheKey,count:data.length/10}}
   const batch=data=>{ctx.bufferData(ctx.ARRAY_BUFFER,data,ctx.DYNAMIC_DRAW);ctx.drawArrays(ctx.TRIANGLES,0,data.length/10)};
   ctx.depthMask(true);ctx.disable(ctx.BLEND);bind(staticBuffer);ctx.drawArrays(ctx.TRIANGLES,0,fixedCache.count);bind(buffer);batch(pack(movingOpaque));ctx.enable(ctx.BLEND);ctx.blendFuncSeparate(ctx.SRC_ALPHA,ctx.ONE_MINUS_SRC_ALPHA,ctx.ONE,ctx.ONE_MINUS_SRC_ALPHA);ctx.depthMask(false);batch(pack(translucent));ctx.depthMask(true);
