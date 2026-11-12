@@ -1,0 +1,36 @@
+eval: undefined
+shot shots/cycle-v4-cw-before.png · readout ""
+eval: undefined
+shot shots/cycle-v4-cw-middle.png · readout ""
+eval: undefined
+shot shots/cycle-v4-cw-after.png · readout ""
+eval: undefined
+shot shots/cycle-v4-ccw-before.png · readout ""
+eval: undefined
+shot shots/cycle-v4-ccw-middle.png · readout ""
+eval: undefined
+shot shots/cycle-v4-ccw-after.png · readout ""
+eval: undefined
+shot shots/cycle-v4-grip.png · readout ""
+eval: undefined
+shot shots/cycle-v4-ld-wait-wet.png · readout ""
+eval: undefined
+shot shots/cycle-v4-ld-wait-dry.png · readout ""
+eval: undefined
+shot shots/cycle-v4-clean-stopped.png · readout ""
+eval: undefined
+shot shots/cycle-v4-fetch.png · readout ""
+eval: undefined
+shot shots/cycle-v4-return.png · readout ""
+eval: undefined
+shot shots/cycle-v4-complete.png · readout ""
+eval: undefined
+shot shots/cycle-v4-grip-detail.png · readout ""
+eval: "{\"info\":{\"faces\":18849,\"webgl\":true,\"glError\":0,\"visualVersion\":4},\"state\":{\"t\":89,\"step\":11,\"traverser\":{\"x\":420,\"y\":190,\"z\":104,\"headZ\":104,\"headY\":35,\"pitch\":0,\"roll\":0},\"arm\":{\"x\":420,\"y\":-125,\"z\":143,\"angle\":0},\"stage\":{\"x\":420,\"y\":35,\"z\":104,\"radius\":21.333333333333332,\"rotation\":0},\"stocker\":{\"pusherX\":70,\"handoffX\":230,\"rackRight\":146,\"pushComplete\":true,\"phase\":\"home\"},\"chuckOwner\":\"traverser\",\"maskOwner\":\"traverser\",\"chuck\":{\"x\":420,\"y\":35,\"z\":104},\"mask\":{\"x\":420,\"y\":35,\"z\":113,\"angle\":0},\"chuckRotation\":0,\"maskRotation\":1.5707963267948966,\"stockCount\":2,\"topSpray\":false,\"backDIW\":false,\"dry\":false,\"cleaningComplete\":false,\"spin\":0,\"holderSides\":[\"front\",\"rear\"],\"armSupports\":4,\"gripMode\":\"chuck\",\"gripEngaged\":true,\"gripClosure\":1,\"gripPoints\":[{\"side\":\"front\",\"x\":420,\"y\":-15.700000000000003,\"z\":109},{\"side\":\"rear\",\"x\":420,\"y\":85.7,\"z\":109}],\"blockPoints\":[{\"side\":\"front\",\"x\":420,\"y\":-15.700000000000003,\"z\":109},{\"side\":\"rear\",\"x\":420,\"y\":85.7,\"z\":109}],\"phase\":\"loading\"}}"
+eval: undefined
+eval: "{\"departedLD\":true,\"cleaningComplete\":true,\"DIWoff\":true}"
+eval: undefined
+eval: "{\"returned\":true,\"maskReturned\":true}"
+eval: "{\"cwButton\":true}"
+eval: "{\"nextStep\":true}"
+console: clean

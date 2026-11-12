@@ -1,0 +1,307 @@
+{
+  "samples": 9521,
+  "dt": 0.025,
+  "scope": "Actual box/cylinder/rod calls, OBB broad/narrow phase; cylinder bounds conservative; Chuck plate candidates confirmed against actual perforated strips; assembled joints require classification",
+  "findings": [
+    {
+      "key": "moving:196:1 / moving:197:1",
+      "a": "box(xx-6,-13,-14,12,26,9,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 6.00000000000069,
+      "at": 198.55,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:2 / moving:197:2",
+      "a": "box(xx-6,-13,-14,12,26,9,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 6.00000000000069,
+      "at": 198.55,
+      "count": 9521
+    },
+    {
+      "key": "moving:213:1 / moving:222:1",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let yy of [-30,100,160])box(x-12,yy-6,z+31,24,12,3,'head');",
+      "start": 0,
+      "end": 238,
+      "max": 4.000000000000043,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:213:2 / moving:222:2",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let yy of [-30,100,160])box(x-12,yy-6,z+31,24,12,3,'head');",
+      "start": 0,
+      "end": 238,
+      "max": 4.000000000000043,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:223:1 / moving:231:1",
+      "a": "box(x-4,Math.min(anchor,maskY),z+C.maskContactZ+gap,8,Math.abs(maskY-anchor),1.2,'metal');",
+      "b": "box(x-6,anchor-4,z+C.chuckBodyZ+1,12,8,29-C.chuckBodyZ-1,'arm');",
+      "start": 0,
+      "end": 238,
+      "max": 4,
+      "at": 0,
+      "count": 9521
+    },
+    {
+      "key": "moving:223:2 / moving:231:2",
+      "a": "box(x-4,Math.min(anchor,maskY),z+C.maskContactZ+gap,8,Math.abs(maskY-anchor),1.2,'metal');",
+      "b": "box(x-6,anchor-4,z+C.chuckBodyZ+1,12,8,29-C.chuckBodyZ-1,'arm');",
+      "start": 0,
+      "end": 238,
+      "max": 3.999999999999993,
+      "at": 0,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:1 / moving:199:1",
+      "a": "rod([420+xx-6,m.arm.y,C.armZ],[420+xx+6,m.arm.y,C.armZ],6,'dark',32);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 3.485248462332464,
+      "at": 201.525,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:2 / moving:199:2",
+      "a": "rod([420+xx-6,m.arm.y,C.armZ],[420+xx+6,m.arm.y,C.armZ],6,'dark',32);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 3.485248462332464,
+      "at": 201.525,
+      "count": 9521
+    },
+    {
+      "key": "moving:197:1 / moving:199:1",
+      "a": "rod([420+xx-6,m.arm.y,C.armZ],[420+xx+6,m.arm.y,C.armZ],6,'dark',32);",
+      "b": "box(xx-6,-13,-14,12,26,9,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 3.485248462332386,
+      "at": 201.525,
+      "count": 9521
+    },
+    {
+      "key": "moving:197:2 / moving:199:2",
+      "a": "rod([420+xx-6,m.arm.y,C.armZ],[420+xx+6,m.arm.y,C.armZ],6,'dark',32);",
+      "b": "box(xx-6,-13,-14,12,26,9,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 3.485248462332386,
+      "at": 201.525,
+      "count": 9521
+    },
+    {
+      "key": "moving:177:2 / moving:179:1",
+      "a": "box(px-6,-12,level-4,12,96,3,'metal');",
+      "b": "box(px-61,y-4,level-4,122,8,4,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 3,
+      "at": 0,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:1 / moving:202:1",
+      "a": "box(Math.min(xx,sx)-3,yy-5,-7,Math.abs(xx-sx)+6,10,5,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000010756,
+      "at": 197.85000000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:2 / moving:202:3",
+      "a": "box(Math.min(xx,sx)-3,yy-5,-7,Math.abs(xx-sx)+6,10,5,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000010756,
+      "at": 197.85000000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:1 / moving:202:2",
+      "a": "box(Math.min(xx,sx)-3,yy-5,-7,Math.abs(xx-sx)+6,10,5,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000008136,
+      "at": 198.70000000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:196:2 / moving:202:4",
+      "a": "box(Math.min(xx,sx)-3,yy-5,-7,Math.abs(xx-sx)+6,10,5,'arm',tr);",
+      "b": "box(xx-4,-C.maskHalfY-9,-11,8,2*(C.maskHalfY+9),6,'arm',tr);",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000008136,
+      "at": 198.70000000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:223:1 / moving:225:1",
+      "a": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "b": "box(x-6,anchor-4,z+C.chuckBodyZ+1,12,8,29-C.chuckBodyZ-1,'arm');",
+      "start": 0,
+      "end": 238,
+      "max": 2.000000000000014,
+      "at": 164.97500000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:223:2 / moving:225:2",
+      "a": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "b": "box(x-6,anchor-4,z+C.chuckBodyZ+1,12,8,29-C.chuckBodyZ-1,'arm');",
+      "start": 0,
+      "end": 238,
+      "max": 2.000000000000014,
+      "at": 164.97500000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:225:1 / moving:229:1",
+      "a": "box(x-5,outer-1.25,z,10,2.5,C.chuckBodyZ+1.5,'metal');",
+      "b": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "start": 10.725000000000001,
+      "end": 227.97500000000002,
+      "max": 1.5000000000000142,
+      "at": 20.925,
+      "count": 3966
+    },
+    {
+      "key": "moving:225:2 / moving:229:2",
+      "a": "box(x-5,outer-1.25,z,10,2.5,C.chuckBodyZ+1.5,'metal');",
+      "b": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "start": 10.725000000000001,
+      "end": 227.97500000000002,
+      "max": 1.5000000000000142,
+      "at": 20.925,
+      "count": 3966
+    },
+    {
+      "key": "moving:217:1 / moving:225:1",
+      "a": "const contactBox=(...args)=>{const start=target.length;box(...args);for(let i=start;i<target.length;i++)gripContactFaces.add(i)};",
+      "b": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "start": 0,
+      "end": 238,
+      "max": 1.200000000000017,
+      "at": 20.950000000000003,
+      "count": 9521
+    },
+    {
+      "key": "moving:217:3 / moving:225:2",
+      "a": "const contactBox=(...args)=>{const start=target.length;box(...args);for(let i=start;i<target.length;i++)gripContactFaces.add(i)};",
+      "b": "box(x-5,lo,z+C.chuckBodyZ+gap,10,length,1.5,'head');",
+      "start": 0,
+      "end": 238,
+      "max": 1.200000000000017,
+      "at": 20.950000000000003,
+      "count": 9521
+    },
+    {
+      "key": "moving:210:1 / moving:211:1",
+      "a": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "b": "for(let xx of [x-12,x+7])box(xx,188,z+39,5,12,281-z-39,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 9.1,
+      "count": 9521
+    },
+    {
+      "key": "moving:210:2 / moving:211:2",
+      "a": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "b": "for(let xx of [x-12,x+7])box(xx,188,z+39,5,12,281-z-39,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 9.1,
+      "count": 9521
+    },
+    {
+      "key": "moving:211:1 / moving:222:1",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:211:2 / moving:222:1",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:211:1 / moving:222:2",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:211:2 / moving:222:2",
+      "a": "box(x-8,anchor-8,z+29,16,16,6,'head');",
+      "b": "for(let xx of [x-10,x+5]){box(xx,-34,z+34,5,230,6,'arm');rawBox(xx,-34,z+40.05,5,230,.45,'sky')}",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 46.550000000000004,
+      "count": 9521
+    },
+    {
+      "key": "moving:217:4 / moving:231:2",
+      "a": "const contactBox=(...args)=>{const start=target.length;box(...args);for(let i=start;i<target.length;i++)gripContactFaces.add(i)};",
+      "b": "box(x-4,Math.min(anchor,maskY),z+C.maskContactZ+gap,8,Math.abs(maskY-anchor),1.2,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 1.000000000000007,
+      "at": 21.025000000000002,
+      "count": 9521
+    },
+    {
+      "key": "moving:177:1 / moving:179:1",
+      "a": "box(px-6,-12,level-4,12,96,3,'metal');",
+      "b": "box(px-61,y-4,level-4,122,8,4,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 1,
+      "at": 0,
+      "count": 9521
+    },
+    {
+      "key": "moving:217:2 / moving:231:1",
+      "a": "const contactBox=(...args)=>{const start=target.length;box(...args);for(let i=start;i<target.length;i++)gripContactFaces.add(i)};",
+      "b": "box(x-4,Math.min(anchor,maskY),z+C.maskContactZ+gap,8,Math.abs(maskY-anchor),1.2,'metal');",
+      "start": 0,
+      "end": 238,
+      "max": 1,
+      "at": 0,
+      "count": 9521
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "samples": 953,
+  "dt": 0.25,
+  "scope": "Actual box/cylinder/rod calls, OBB broad/narrow phase; cylinder bounds conservative; Chuck plate candidates confirmed against actual perforated strips; assembled joints require classification",
+  "findings": [
+    {
+      "key": "moving:194:1 / moving:195:1",
+      "start": 0,
+      "end": 238,
+      "max": 6.000000000000503,
+      "at": 36.25,
+      "count": 953
+    },
+    {
+      "key": "moving:194:2 / moving:195:2",
+      "start": 0,
+      "end": 238,
+      "max": 6.000000000000503,
+      "at": 36.25,
+      "count": 953
+    },
+    {
+      "key": "moving:211:1 / moving:220:1",
+      "start": 0,
+      "end": 238,
+      "max": 4,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:221:1 / moving:229:1",
+      "start": 0,
+      "end": 238,
+      "max": 4,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:211:2 / moving:220:2",
+      "start": 0,
+      "end": 238,
+      "max": 4,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:221:2 / moving:229:2",
+      "start": 0,
+      "end": 238,
+      "max": 3.999999999999993,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:194:1 / moving:197:1",
+      "start": 0,
+      "end": 238,
+      "max": 3.4849513020240774,
+      "at": 39.5,
+      "count": 953
+    },
+    {
+      "key": "moving:194:2 / moving:197:2",
+      "start": 0,
+      "end": 238,
+      "max": 3.4849513020240774,
+      "at": 39.5,
+      "count": 953
+    },
+    {
+      "key": "moving:195:1 / moving:197:1",
+      "start": 0,
+      "end": 238,
+      "max": 3.4849513020240686,
+      "at": 39.5,
+      "count": 953
+    },
+    {
+      "key": "moving:195:2 / moving:197:2",
+      "start": 0,
+      "end": 238,
+      "max": 3.4849513020240686,
+      "at": 39.5,
+      "count": 953
+    },
+    {
+      "key": "moving:175:2 / moving:177:1",
+      "start": 0,
+      "end": 238,
+      "max": 3,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "fixed:125:1 / moving:208:1",
+      "start": 0,
+      "end": 238,
+      "max": 3,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "fixed:125:1 / moving:208:2",
+      "start": 0,
+      "end": 238,
+      "max": 3,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "fixed:139:4 / moving:186:1",
+      "start": 52.75,
+      "end": 190,
+      "max": 3,
+      "at": 53.25,
+      "count": 95
+    },
+    {
+      "key": "fixed:139:8 / moving:186:2",
+      "start": 52.75,
+      "end": 190,
+      "max": 3,
+      "at": 53.25,
+      "count": 95
+    },
+    {
+      "key": "moving:194:1 / moving:200:1",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000007634,
+      "at": 42.75,
+      "count": 953
+    },
+    {
+      "key": "moving:194:2 / moving:200:3",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000007634,
+      "at": 42.75,
+      "count": 953
+    },
+    {
+      "key": "moving:194:1 / moving:200:2",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000004565,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:194:2 / moving:200:4",
+      "start": 0,
+      "end": 238,
+      "max": 2.0000000000004565,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:221:1 / moving:223:1",
+      "start": 0,
+      "end": 238,
+      "max": 2.000000000000007,
+      "at": 138.5,
+      "count": 953
+    },
+    {
+      "key": "moving:221:2 / moving:223:2",
+      "start": 0,
+      "end": 238,
+      "max": 2.000000000000007,
+      "at": 138.5,
+      "count": 953
+    },
+    {
+      "key": "moving:223:1 / moving:227:1",
+      "start": 10.75,
+      "end": 227.75,
+      "max": 1.5,
+      "at": 11.5,
+      "count": 396
+    },
+    {
+      "key": "moving:223:2 / moving:227:2",
+      "start": 10.75,
+      "end": 227.75,
+      "max": 1.5,
+      "at": 11.5,
+      "count": 396
+    },
+    {
+      "key": "moving:215:1 / moving:223:1",
+      "start": 0,
+      "end": 238,
+      "max": 1.20000000000001,
+      "at": 75.25,
+      "count": 953
+    },
+    {
+      "key": "moving:215:3 / moving:223:2",
+      "start": 0,
+      "end": 238,
+      "max": 1.20000000000001,
+      "at": 75.25,
+      "count": 953
+    },
+    {
+      "key": "moving:208:1 / moving:209:1",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 54.25,
+      "count": 953
+    },
+    {
+      "key": "moving:208:2 / moving:209:2",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000284,
+      "at": 54.25,
+      "count": 953
+    },
+    {
+      "key": "moving:209:1 / moving:220:1",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000142,
+      "at": 91.75,
+      "count": 953
+    },
+    {
+      "key": "moving:209:2 / moving:220:1",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000142,
+      "at": 91.75,
+      "count": 953
+    },
+    {
+      "key": "moving:209:1 / moving:220:2",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000142,
+      "at": 91.75,
+      "count": 953
+    },
+    {
+      "key": "moving:209:2 / moving:220:2",
+      "start": 0,
+      "end": 238,
+      "max": 1.0000000000000142,
+      "at": 91.75,
+      "count": 953
+    },
+    {
+      "key": "moving:215:4 / moving:229:2",
+      "start": 0,
+      "end": 238,
+      "max": 1.000000000000007,
+      "at": 21.25,
+      "count": 953
+    },
+    {
+      "key": "moving:175:1 / moving:177:1",
+      "start": 0,
+      "end": 238,
+      "max": 1,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:215:2 / moving:229:1",
+      "start": 0,
+      "end": 238,
+      "max": 1,
+      "at": 0,
+      "count": 953
+    },
+    {
+      "key": "moving:229:1 / moving:92:1",
+      "start": 58,
+      "end": 183,
+      "max": 0.14000000000000767,
+      "at": 75,
+      "count": 138
+    },
+    {
+      "key": "moving:229:2 / moving:92:2",
+      "start": 58,
+      "end": 183,
+      "max": 0.14000000000000767,
+      "at": 75,
+      "count": 138
+    },
+    {
+      "key": "moving:92:1 / moving:93:1",
+      "start": 31,
+      "end": 238,
+      "max": 0.12000000000403499,
+      "at": 41.75,
+      "count": 829
+    },
+    {
+      "key": "moving:92:1 / moving:93:2",
+      "start": 31,
+      "end": 238,
+      "max": 0.12000000000403499,
+      "at": 41.75,
+      "count": 829
+    },
+    {
+      "key": "moving:92:2 / moving:93:1",
+      "start": 31,
+      "end": 238,
+      "max": 0.12000000000324926,
+      "at": 39.5,
+      "count": 829
+    },
+    {
+      "key": "moving:92:2 / moving:93:2",
+      "start": 31,
+      "end": 238,
+      "max": 0.12000000000324926,
+      "at": 39.5,
+      "count": 829
+    }
+  ]
+}

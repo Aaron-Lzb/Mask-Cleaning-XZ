@@ -1,0 +1,8 @@
+eval: undefined
+shot shots/return-tilt-horizontal.png · readout ""
+eval: undefined
+shot shots/return-tilt-middle.png · readout ""
+eval: undefined
+shot shots/return-tilt-75.png · readout ""
+eval: "{\"finalAngle\":75,\"armY\":-125,\"info\":{\"faces\":18899,\"webgl\":true,\"glError\":0,\"visualVersion\":5}}"
+console: clean

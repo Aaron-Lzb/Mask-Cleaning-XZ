@@ -1,0 +1,4 @@
+eval: undefined
+shot shots/visual-fallback.png · readout ""
+eval: "{\"faces\":5261,\"webgl\":false,\"glError\":0,\"visualVersion\":2}"
+console: clean

@@ -1,0 +1,47 @@
+eval: undefined
+shot shots/unload-v5-home.png · readout ""
+eval: undefined
+shot shots/unload-v5-extending.png · readout ""
+eval: undefined
+shot shots/unload-v5-extended.png · readout ""
+eval: undefined
+shot shots/unload-v5-retract-empty.png · readout ""
+eval: undefined
+shot shots/unload-v5-cw-mid.png · readout ""
+eval: undefined
+shot shots/unload-v5-cw-end.png · readout ""
+eval: undefined
+shot shots/unload-v5-mask-lift.png · readout ""
+eval: undefined
+shot shots/unload-v5-arm-in.png · readout ""
+eval: undefined
+shot shots/unload-v5-mask-deposit.png · readout ""
+eval: undefined
+shot shots/unload-v5-arm-return.png · readout ""
+eval: undefined
+shot shots/unload-v5-empty-reindex.png · readout ""
+eval: undefined
+shot shots/unload-v5-empty-lift.png · readout ""
+eval: undefined
+shot shots/unload-v5-tray-receive.png · readout ""
+eval: undefined
+shot shots/unload-v5-stock-release.png · readout ""
+eval: undefined
+shot shots/unload-v5-loaded-retract.png · readout ""
+eval: undefined
+shot shots/unload-v5-complete.png · readout ""
+eval: "{\"steps\":29,\"info\":{\"faces\":18899,\"webgl\":true,\"glError\":0,\"visualVersion\":5},\"final\":{\"t\":238,\"step\":28,\"traverser\":{\"x\":230,\"y\":190,\"z\":223,\"headZ\":223,\"headY\":35,\"pitch\":0,\"roll\":0},\"arm\":{\"x\":420,\"y\":-125,\"z\":143,\"angle\":0},\"stage\":{\"x\":420,\"y\":35,\"z\":104,\"radius\":21.333333333333332,\"rotation\":0},\"stocker\":{\"pusherX\":70,\"handoffX\":230,\"rackRight\":146,\"pushComplete\":false,\"phase\":\"stored\",\"trayOrigin\":\"internal\",\"externalSupport\":false},\"chuckOwner\":\"stock\",\"maskOwner\":\"arm\",\"chuck\":{\"x\":70,\"y\":35,\"z\":154},\"mask\":{\"x\":420,\"y\":-125,\"z\":143,\"angle\":0},\"chuckRotation\":25.132741228718345,\"maskRotation\":25.132741228718345,\"stockCount\":3,\"topSpray\":false,\"backDIW\":false,\"dry\":false,\"cleaningComplete\":true,\"spin\":25.132741228718345,\"holderSides\":[\"front\",\"rear\"],\"armSupports\":4,\"gripMode\":\"chuck\",\"gripEngaged\":false,\"gripClosure\":0,\"gripPoints\":[{\"side\":\"front\",\"x\":230,\"y\":-15.700000000000003,\"z\":229.5},{\"side\":\"rear\",\"x\":230,\"y\":85.7,\"z\":229.5}],\"blockPoints\":[{\"side\":\"front\",\"x\":69.99999999999996,\"y\":-15.700000000000003,\"z\":159},{\"side\":\"rear\",\"x\":70.00000000000004,\"y\":85.7,\"z\":159}],\"phase\":\"complete\"}}"
+eval: undefined
+eval: "{\"time\":167.69990000000004,\"passed\":true}"
+eval: undefined
+eval: undefined
+eval: "{\"time\":183.69989999999981,\"passed\":true}"
+eval: undefined
+eval: undefined
+eval: "{\"time\":227.6999999999998,\"passed\":true}"
+eval: undefined
+eval: undefined
+eval: "{\"time\":238,\"passed\":true}"
+eval: undefined
+eval: "{\"lastStep\":true}"
+console: clean

@@ -1,0 +1,28 @@
+eval: undefined
+shot shots/visual-initial.png · readout ""
+eval: undefined
+shot shots/visual-load75.png · readout ""
+eval: undefined
+shot shots/visual-arm-rear.png · readout ""
+eval: undefined
+shot shots/visual-arm-return.png · readout ""
+eval: undefined
+shot shots/visual-overview.png · readout ""
+eval: undefined
+shot shots/visual-cleaner.png · readout ""
+shot shots/visual-cleaner-detail.png · readout ""
+eval: undefined
+shot shots/visual-cleaner-rotation.png · readout ""
+eval: undefined
+shot shots/visual-dry.png · readout ""
+eval: undefined
+shot shots/visual-blue-theme.png · readout ""
+eval: undefined
+shot shots/visual-top.png · readout ""
+eval: "{\"info\":{\"faces\":6425,\"webgl\":true,\"glError\":0,\"visualVersion\":2},\"overflow\":false,\"Y\":190,\"headY\":35,\"stageZ\":104}"
+eval: undefined
+eval: "{\"crossedDry\":true,\"dry\":true,\"DIWoff\":true}"
+eval: "{\"stepButton\":true}"
+eval: "{\"keyboard\":true}"
+eval: "{\"meanRenderMs\":8.120000000298024}"
+console: clean
