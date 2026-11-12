@@ -1,0 +1,19 @@
+eval: "light"
+eval: undefined
+eval: undefined
+eval: undefined
+eval: undefined
+eval: undefined
+eval: undefined
+eval: "{\"keyboard\":\"PASS\",\"title\":\"Photomask-Cleaner · Anatomy\",\"mask\":\"#b9d8e8\"}"
+eval: "{\"staticCache\":\"PASS\",\"unchanged\":0,\"view\":1,\"sameView\":0,\"theme\":1,\"resize\":1,\"movingGripCamera\":1}"
+shot checks/2026-11-12/desktop.png · readout ""
+eval: undefined
+shot checks/2026-11-12/ld.png · readout ""
+eval: undefined
+eval: undefined
+eval: 115.11666799999999
+eval: "{\"contextLoss\":\"PASS\",\"stoppedAt\":115.11666799999999,\"info\":{\"webgl\":true,\"contextLost\":true,\"glError\":37442},\"note\":\"绘图已中断 · 动画已暂停\"}"
+shot checks/2026-11-12/context-loss.png · readout ""
+eval: "{\"reload\":\"PASS\",\"time\":0,\"glError\":0}"
+console: clean

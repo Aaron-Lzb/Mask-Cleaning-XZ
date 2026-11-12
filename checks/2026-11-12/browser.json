@@ -1,0 +1,146 @@
+[
+  [
+    "eval",
+    "if(!document.title.startsWith('Photomask-Cleaner'))throw Error('Project title');if(CleaningScene.colors.mask!=='#b9d8e8'||document.querySelector('.fluid-legend span:nth-child(2) i').style.backgroundColor!=='rgb(185, 216, 232)')throw Error('Mask legend');if(performance.getEntriesByType('resource').length)throw Error('Unexpected external resources');cleaning.seek(100);window.originalTheme=document.body.className"
+  ],
+  [
+    "key",
+    " ",
+    "#theme",
+    "Space"
+  ],
+  [
+    "eval",
+    "if(cleaning.playing||cleaning.time!==100||document.body.className===originalTheme)throw Error('Native theme Space');cleaning.seek(100)"
+  ],
+  [
+    "key",
+    " ",
+    "#restart",
+    "Space"
+  ],
+  [
+    "wait",
+    150
+  ],
+  [
+    "eval",
+    "if(!cleaning.playing||cleaning.time>2)throw Error('Native restart Space');cleaning.seek(100)"
+  ],
+  [
+    "key",
+    " ",
+    "[data-step=\"0\"]",
+    "Space"
+  ],
+  [
+    "eval",
+    "if(cleaning.playing||cleaning.time!==0)throw Error('Native step Space');cleaning.seek(50);document.body.tabIndex=-1;document.body.focus()"
+  ],
+  [
+    "key",
+    " ",
+    "body",
+    "Space"
+  ],
+  [
+    "wait",
+    100
+  ],
+  [
+    "eval",
+    "if(!cleaning.playing||cleaning.time<=50)throw Error('Body Space play')"
+  ],
+  [
+    "key",
+    " ",
+    "body",
+    "Space"
+  ],
+  [
+    "eval",
+    "if(cleaning.playing)throw Error('Body Space pause');cleaning.seek(50);document.body.focus()"
+  ],
+  [
+    "key",
+    "ArrowRight",
+    "body"
+  ],
+  [
+    "eval",
+    "if(cleaning.time!==54)throw Error('Body ArrowRight')"
+  ],
+  [
+    "key",
+    "Home",
+    "body"
+  ],
+  [
+    "eval",
+    "if(cleaning.time!==0)throw Error('Body Home');JSON.stringify({keyboard:'PASS',title:document.title,mask:CleaningScene.colors.mask})"
+  ],
+  [
+    "eval",
+    "(async()=>{cleaning.setView('iso');cleaning.seek(115);const proto=WebGLRenderingContext.prototype,old=proto.bufferData;let writes=0;proto.bufferData=function(...a){if(a[2]===this.STATIC_DRAW)writes++;return old.apply(this,a)};const count=fn=>{writes=0;fn();return writes},frame=()=>new Promise(requestAnimationFrame),r={};try{r.unchanged=count(()=>cleaning.seek(115));r.view=count(()=>cleaning.setView('top'));r.sameView=count(()=>cleaning.setView('top'));r.theme=count(()=>document.getElementById('theme').click());writes=0;document.getElementById('machine').style.width='calc(100% - 2px)';await frame();await frame();r.resize=writes;document.getElementById('machine').style.width='';await frame();await frame();cleaning.setView('grip');r.movingGripCamera=count(()=>cleaning.seek(16));cleaning.setView('iso');cleaning.seek(115);}finally{proto.bufferData=old}if(r.unchanged!==0||r.sameView!==0||r.view!==1||r.theme!==1||r.resize!==1||r.movingGripCamera!==1)throw Error('Static cache invalidation '+JSON.stringify(r));return JSON.stringify({staticCache:'PASS',...r})})()"
+  ],
+  [
+    "shot",
+    "checks/2026-11-12/desktop.png",
+    ".board"
+  ],
+  [
+    "eval",
+    "cleaning.seek(40)"
+  ],
+  [
+    "shot",
+    "checks/2026-11-12/ld.png",
+    ".board"
+  ],
+  [
+    "eval",
+    "cleaning.setView('cleaner');cleaning.seek(115);document.getElementById('play').click()"
+  ],
+  [
+    "wait",
+    100
+  ],
+  [
+    "eval",
+    "document.getElementById('machine').getContext('webgl').getExtension('WEBGL_lose_context').loseContext()"
+  ],
+  [
+    "wait",
+    150
+  ],
+  [
+    "eval",
+    "if(cleaning.playing||!cleaning.info.contextLost||document.getElementById('renderFailure').hidden||!document.getElementById('play').disabled||!document.getElementById('seek').disabled||!document.getElementById('rendernote').textContent.includes('中断'))throw Error('Context loss handling');window.stoppedAt=cleaning.time"
+  ],
+  [
+    "wait",
+    250
+  ],
+  [
+    "eval",
+    "if(cleaning.time!==stoppedAt)throw Error('Animation continued after loss');JSON.stringify({contextLoss:'PASS',stoppedAt,info:cleaning.info,note:document.getElementById('rendernote').textContent})"
+  ],
+  [
+    "shot",
+    "checks/2026-11-12/context-loss.png",
+    ".board"
+  ],
+  [
+    "click",
+    "#reload"
+  ],
+  [
+    "until",
+    "window.cleaning&&document.readyState==='complete'&&cleaning.time===0&&!cleaning.playing&&document.getElementById('renderFailure').hidden&&!document.getElementById('play').disabled",
+    5000
+  ],
+  [
+    "eval",
+    "if(cleaning.info.glError||cleaning.info.contextLost||!location.pathname.endsWith('/Photomask-Cleaner.html'))throw Error('Reload recovery');JSON.stringify({reload:'PASS',time:cleaning.time,glError:cleaning.info.glError})"
+  ]
+]

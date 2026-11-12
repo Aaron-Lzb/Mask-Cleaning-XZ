@@ -1,0 +1,7 @@
+eval: undefined
+shot checks/2026-11-12/mobile-320.png · readout ""
+eval: "{\"mobile\":\"PASS\",\"width\":320,\"overflow\":false,\"time\":173.05}"
+eval: undefined
+eval: "{\"mobileLoss\":\"PASS\",\"width\":320}"
+shot checks/2026-11-12/mobile-loss-320.png · readout ""
+console: clean

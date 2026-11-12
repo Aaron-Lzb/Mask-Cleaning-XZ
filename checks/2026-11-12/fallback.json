@@ -1,0 +1,11 @@
+[
+  [
+    "eval",
+    "cleaning.setView('cleaner');cleaning.seek(115);if(cleaning.info.webgl||cleaning.info.glError||!document.getElementById('renderFailure').hidden)throw Error('Fallback');JSON.stringify({fallback:'PASS',info:cleaning.info})"
+  ],
+  [
+    "shot",
+    "checks/2026-11-12/fallback.png",
+    ".board"
+  ]
+]

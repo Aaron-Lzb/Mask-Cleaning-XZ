@@ -1,4 +1,4 @@
-# Mask Cleaning XZ — 全新基础项目
+# Photomask-Cleaner — 全新基础项目
 
 ## 构思
 后部独立 XZ Traverser 使用固定长度水平悬臂覆盖工位中心线；LD arm 自前方沿 Y 把水平 Mask 送到 Chuck 正上方。Traverser 竖直提起 Mask，等待 arm 回位后竖直下降，完成装载。

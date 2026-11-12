@@ -1,0 +1,47 @@
+{
+  "identical": true,
+  "states": [
+    {
+      "view": "iso",
+      "t": 40,
+      "width": 1374,
+      "height": 698,
+      "sha256": "8eadba9cf5e8480c4e808464ab7a6c3f18f65c52f69aa453b867054fb5ef5ca2"
+    },
+    {
+      "view": "top",
+      "t": 83,
+      "width": 1374,
+      "height": 698,
+      "sha256": "fb24db0e154898a4eec3fb2b6c96870fc9d2dc302d84326719365f67e9aa48f3"
+    },
+    {
+      "view": "cleaner",
+      "t": 115,
+      "width": 1374,
+      "height": 698,
+      "sha256": "7ecfaf575e88b12aa3afc0ba30421c4a305da48e4f9f6518826be9aad4961589"
+    },
+    {
+      "view": "grip",
+      "t": 58,
+      "width": 1374,
+      "height": 698,
+      "sha256": "9c4a755e66e740e3ae446d6f51cab0e3405ac0b8104eaf02babfd2e8447740eb"
+    },
+    {
+      "view": "iso",
+      "t": 100,
+      "width": 1374,
+      "height": 698,
+      "sha256": "57fe84650400c787d79b47396c5e490f40a1ec5ced5c8ccfd5e9d77e3784108f"
+    },
+    {
+      "view": "iso",
+      "t": 201,
+      "width": 1374,
+      "height": 698,
+      "sha256": "3a037f3c1f5de9098cf920278ce7361cf66c02266df793b2da45986511846d0c"
+    }
+  ]
+}

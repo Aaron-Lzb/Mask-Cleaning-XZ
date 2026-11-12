@@ -55,7 +55,7 @@ function annulus(x,y,z,inner,outer,h,col='metal',start=0,end=Math.PI*2,n=72){
 }
 // One canonical extruded plate from the updated photo, reused at every location.
 // 8 connection arms are explicitly confirmed by the user; all large openings are true holes.
-let chuckMesh=null;
+let chuckMesh=null,chuckBounds=null;
 function buildChuckMesh(){
  const saved=target;target=[];
  for(let quad of ChuckProfile.surfaceQuads){
@@ -71,7 +71,7 @@ function buildChuckMesh(){
  if(hub.length)annulus(hub[0],hub[1],5,hub[2]+.15,10,1.5,'metal');
  for(let [x,y] of ChuckProfile.supportPoints)cylinder(x,y,5,1.1,4,'pad',16);
  // Scale the complete Chuck only, including hub and support pads, about its unchanged seating plane.
- const mesh=target.map(f=>({...f,points:f.points.map(([x,y,z])=>[x,y,z*C.chuckZScale]),normal:norm([f.normal[0],f.normal[1],f.normal[2]/C.chuckZScale]),normals:f.normals?f.normals.map(n=>norm([n[0],n[1],n[2]/C.chuckZScale])):null}));target=saved;return mesh;
+ const mesh=target.map(f=>({...f,points:f.points.map(([x,y,z])=>[x,y,z*C.chuckZScale]),normal:norm([f.normal[0],f.normal[1],f.normal[2]/C.chuckZScale]),normals:f.normals?f.normals.map(n=>norm([n[0],n[1],n[2]/C.chuckZScale])):null}));chuckBounds=[0,1,2].map(axis=>{const values=mesh.flatMap(f=>f.points.map(p=>p[axis]));return [Math.min(...values),Math.max(...values)]});target=saved;return mesh;
 }
 function chuck(x,y,z,rot=0){
  if(!chuckMesh)chuckMesh=buildChuckMesh();
@@ -162,7 +162,7 @@ function makeStatic(){target=[];
  for(let x of [702,758]){rod([x,-24,66],[x,-24,79],3,'metal',20);cylinder(x,-24,77.5,3.6,2,'water',20)}
  return target;
 }
-const fixed=makeStatic();
+const fixed=makeStatic(),fixedTransparent=fixed.filter(f=>f.alpha<1);
 function supportTray(px,level){
  const d=px-C.stockX;
  for(let y of [-15,83]){
@@ -230,14 +230,14 @@ function moving(m){target=[];
  // Widen only the arm and two grippers about their unchanged work centerline.
  // Y/Z, clamp centers and the rear carriage remain unchanged.
  const widthOf=(start,end)=>{const xs=target.slice(start,end).flatMap(f=>f.points.map(p=>p[0]));return Math.max(...xs)-Math.min(...xs)};
- const before=[widthOf(armStart,gripStart),...gripRanges.map(r=>widthOf(...r))];
+ const before=armWidthReport?null:[widthOf(armStart,gripStart),...gripRanges.map(r=>widthOf(...r))];
  for(let i=armStart;i<target.length;i++){
   // Body-only extra 50%; keep the proven contact pads within the Chuck solid tabs.
   const scale=traverserWidthScale*(i>=gripStart&&!gripContactFaces.has(i)?1.5:1);
   const f=target[i],normal=n=>norm([n[0]/scale,n[1],n[2]]);
   target[i]={...f,points:f.points.map(p=>[x+(p[0]-x)*scale,p[1],p[2]]),normal:normal(f.normal),normals:f.normals?f.normals.map(normal):null};
  }
- armWidthReport={scale:traverserWidthScale,before,after:[widthOf(armStart,gripStart),...gripRanges.map(r=>widthOf(...r))]};
+ if(before)armWidthReport={scale:traverserWidthScale,before,after:[widthOf(armStart,gripStart),...gripRanges.map(r=>widthOf(...r))]};
  if(m.mask)mask(m.mask.x,m.mask.y,m.mask.z,m.maskRotation,m.mask.angle);
 
  return target;
@@ -289,7 +289,7 @@ function spray(m){target=[];
 }
 const canvas=document.getElementById('machine');
 const ctx=canvas.getContext('webgl',{antialias:true,preserveDrawingBuffer:true,alpha:true});let fallback=null;
-let program,buffer,posLoc,colorLoc,normalLoc,viewLoc;
+let program,buffer,staticBuffer,posLoc,colorLoc,normalLoc,viewLoc;
 if(ctx){
  const shader=(type,src)=>{let s=ctx.createShader(type);ctx.shaderSource(s,src);ctx.compileShader(s);if(!ctx.getShaderParameter(s,ctx.COMPILE_STATUS))throw new Error(ctx.getShaderInfoLog(s));return s};
  program=ctx.createProgram();
@@ -298,11 +298,12 @@ if(ctx){
  varying vec4 v;varying vec3 normal;uniform vec3 eye;
  void main(){vec3 n=normalize(normal);vec3 l=normalize(vec3(-.35,-.45,1.));float lambert=max(0.,dot(n,l));float diffuse=.80+.20*lambert;float spec=pow(max(0.,dot(n,normalize(l+eye))),40.);vec3 color=v.rgb*diffuse+vec3(.045*spec);gl_FragColor=vec4(min(color,vec3(1.)),v.a);}`));
  ctx.linkProgram(program);if(!ctx.getProgramParameter(program,ctx.LINK_STATUS))throw new Error('Renderer linking failed');
- ctx.useProgram(program);buffer=ctx.createBuffer();posLoc=ctx.getAttribLocation(program,'p');colorLoc=ctx.getAttribLocation(program,'c');normalLoc=ctx.getAttribLocation(program,'n');viewLoc=ctx.getUniformLocation(program,'eye');
+ ctx.useProgram(program);buffer=ctx.createBuffer();staticBuffer=ctx.createBuffer();posLoc=ctx.getAttribLocation(program,'p');colorLoc=ctx.getAttribLocation(program,'c');normalLoc=ctx.getAttribLocation(program,'n');viewLoc=ctx.getUniformLocation(program,'eye');
 }else{fallback=document.createElement('canvas');canvas.replaceWith(fallback);fallback.id='machine';fallback.setAttribute('aria-label',canvas.getAttribute('aria-label'));fallback.setAttribute('role','img');document.getElementById('rendernote').textContent='兼容投影模式（无 WebGL）'}
 function camera(view){if(view==='grip')return {r:[0,1,0],u:[0,0,1],v:[1,0,0]};if(view==='top')return {r:[1,0,0],u:[0,1,0],v:[0,0,1]};let a=(view==='front'?0:view==='cleaner'?20:15)*Math.PI/180,e=(view==='front'?22:view==='cleaner'?23:32)*Math.PI/180;return {r:[Math.cos(a),Math.sin(a),0],u:[-Math.sin(a)*Math.sin(e),Math.cos(a)*Math.sin(e),Math.cos(e)],v:[Math.sin(a)*Math.cos(e),-Math.cos(a)*Math.cos(e),Math.sin(e)]}}
 let fixedCache=null;
 function render(m,view='iso',light=true){
+ if(ctx&&ctx.isContextLost())return {webgl:true,contextLost:true,glError:ctx.CONTEXT_LOST_WEBGL};
  const surface=fallback||canvas,rect=surface.getBoundingClientRect(),dpr=Math.min(devicePixelRatio,1.5);
  const w=Math.round(rect.width*dpr),h=Math.round(rect.height*dpr);if(surface.width!==w||surface.height!==h){surface.width=w;surface.height=h}
  const cam=camera(view),gripView=view==='grip',close=view==='cleaner',focusX=m.traverser.x,center=gripView?[focusX,80,171]:close?[730,40,149]:[415,15,128];
@@ -311,23 +312,25 @@ function render(m,view='iso',light=true){
  const minx=Math.min(...xs),maxx=Math.max(...xs),miny=Math.min(...ys),maxy=Math.max(...ys),scale=Math.min(w/(maxx-minx),h/(maxy-miny))*.91,cx=(minx+maxx)/2,cy=(miny+maxy)/2;
  const project=p=>{let q=sub(p,center);return [(dot(q,cam.r)-cx)*scale*2/w,(dot(q,cam.u)-cy)*scale*2/h,-dot(q,cam.v)/1400]};
  const inView=f=>gripView?f.points.every(p=>p[0]>=focusX-66&&p[0]<=focusX+66&&p[1]>=-45&&p[1]<=218):!close||Math.max(...f.points.map(p=>p[0]))>=568;
- const allDynamic=moving(m).filter(inView),water=spray(m),opaque=fixed.filter(f=>f.alpha===1&&inView(f)),movingOpaque=allDynamic.filter(f=>f.alpha===1);
- const translucent=[...fixed.filter(f=>f.alpha<1&&inView(f)),...allDynamic.filter(f=>f.alpha<1),...water].sort((a,b)=>a.points.reduce((s,p)=>s+dot(p,cam.v),0)/a.points.length-b.points.reduce((s,p)=>s+dot(p,cam.v),0)/b.points.length);
+ const allDynamic=moving(m).filter(inView),water=spray(m),movingOpaque=allDynamic.filter(f=>f.alpha===1);
+ const translucent=[...fixedTransparent.filter(inView),...allDynamic.filter(f=>f.alpha<1),...water].sort((a,b)=>a.points.reduce((s,p)=>s+dot(p,cam.v),0)/a.points.length-b.points.reduce((s,p)=>s+dot(p,cam.v),0)/b.points.length);
  const tint=f=>{let c=hex(colors[f.color].slice(1));if(!light)c=c.map((v,i)=>Math.min(1,v+(i===2?.012:0)));return [...c,f.alpha]};
  if(ctx){
-  ctx.viewport(0,0,w,h);ctx.clearColor(0,0,0,0);ctx.clear(ctx.COLOR_BUFFER_BIT|ctx.DEPTH_BUFFER_BIT);ctx.useProgram(program);ctx.uniform3fv(viewLoc,cam.v);ctx.enable(ctx.DEPTH_TEST);ctx.depthFunc(ctx.LEQUAL);ctx.disable(ctx.CULL_FACE);ctx.bindBuffer(ctx.ARRAY_BUFFER,buffer);
+  ctx.viewport(0,0,w,h);ctx.clearColor(0,0,0,0);ctx.clear(ctx.COLOR_BUFFER_BIT|ctx.DEPTH_BUFFER_BIT);ctx.useProgram(program);ctx.uniform3fv(viewLoc,cam.v);ctx.enable(ctx.DEPTH_TEST);ctx.depthFunc(ctx.LEQUAL);ctx.disable(ctx.CULL_FACE);
   for(let attr of [posLoc,colorLoc,normalLoc])ctx.enableVertexAttribArray(attr);
-  ctx.vertexAttribPointer(posLoc,3,ctx.FLOAT,false,40,0);ctx.vertexAttribPointer(colorLoc,4,ctx.FLOAT,false,40,12);ctx.vertexAttribPointer(normalLoc,3,ctx.FLOAT,false,40,28);
+  const bind=b=>{ctx.bindBuffer(ctx.ARRAY_BUFFER,b);ctx.vertexAttribPointer(posLoc,3,ctx.FLOAT,false,40,0);ctx.vertexAttribPointer(colorLoc,4,ctx.FLOAT,false,40,12);ctx.vertexAttribPointer(normalLoc,3,ctx.FLOAT,false,40,28)};
   const pack=fs=>{let data=[];for(let f of fs){let c=tint(f);for(let i=1;i<f.points.length-1;i++)for(let j of [0,i,i+1])data.push(...project(f.points[j]),...c,...(f.normals?f.normals[j]:f.normal))}return new Float32Array(data)};
-  const cacheKey=`${view}:${w}:${h}:${light}:${gripView?focusX:0}`;if(!fixedCache||fixedCache.key!==cacheKey)fixedCache={key:cacheKey,data:pack(opaque)};
+  // Projected static vertices change only with camera, viewport or theme.
+  const cacheKey=`${view}:${w}:${h}:${light}:${gripView?focusX:0}`;
+  if(!fixedCache||fixedCache.key!==cacheKey){const data=pack(fixed.filter(f=>f.alpha===1&&inView(f)));ctx.bindBuffer(ctx.ARRAY_BUFFER,staticBuffer);ctx.bufferData(ctx.ARRAY_BUFFER,data,ctx.STATIC_DRAW);fixedCache={key:cacheKey,count:data.length/10}}
   const batch=data=>{ctx.bufferData(ctx.ARRAY_BUFFER,data,ctx.DYNAMIC_DRAW);ctx.drawArrays(ctx.TRIANGLES,0,data.length/10)};
-  ctx.depthMask(true);ctx.disable(ctx.BLEND);batch(fixedCache.data);batch(pack(movingOpaque));ctx.enable(ctx.BLEND);ctx.blendFuncSeparate(ctx.SRC_ALPHA,ctx.ONE_MINUS_SRC_ALPHA,ctx.ONE,ctx.ONE_MINUS_SRC_ALPHA);ctx.depthMask(false);batch(pack(translucent));ctx.depthMask(true);
+  ctx.depthMask(true);ctx.disable(ctx.BLEND);bind(staticBuffer);ctx.drawArrays(ctx.TRIANGLES,0,fixedCache.count);bind(buffer);batch(pack(movingOpaque));ctx.enable(ctx.BLEND);ctx.blendFuncSeparate(ctx.SRC_ALPHA,ctx.ONE_MINUS_SRC_ALPHA,ctx.ONE,ctx.ONE_MINUS_SRC_ALPHA);ctx.depthMask(false);batch(pack(translucent));ctx.depthMask(true);
  }else{
   const g=fallback.getContext('2d');g.clearRect(0,0,w,h);
   const fs=[...fixed.filter(inView),...allDynamic,...water].map(f=>({...f,d:f.points.reduce((a,p)=>a+project(p)[2],0)/f.points.length})).sort((a,b)=>b.d-a.d);
   for(let f of fs){let c=tint(f),shade=.8+.2*Math.max(0,dot(f.normal,norm([-.35,-.45,1])));g.beginPath();f.points.forEach((p,i)=>{let [x,y]=project(p);i?g.lineTo((x+1)*w/2,(1-y)*h/2):g.moveTo((x+1)*w/2,(1-y)*h/2)});g.closePath();g.fillStyle=`rgba(${c.slice(0,3).map(v=>Math.round(v*255*shade)).join(',')},${c[3]})`;g.fill()}
  }
- return {faces:fixed.length+allDynamic.length,webgl:!!ctx,glError:ctx?ctx.getError():0,visualVersion:12,armWidth:armWidthReport,chuckBounds:[0,1,2].map(axis=>{const values=chuckMesh.flatMap(f=>f.points.map(p=>p[axis]));return [Math.min(...values),Math.max(...values)]})};
+ return {faces:fixed.length+allDynamic.length,webgl:!!ctx,contextLost:false,glError:ctx?ctx.getError():0,visualVersion:13,armWidth:armWidthReport,chuckBounds};
 }
 window.CleaningScene={render,colors,nozzles};
 })();

@@ -1,0 +1,2 @@
+PASS: 9521 complete motion states, constants, keyframes and step timestamps identical; model.js changes limited to step copy; renderer and interaction handlers byte-identical.
+PASS: standalone HTML byte-identical to current build inputs.

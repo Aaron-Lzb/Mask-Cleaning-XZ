@@ -1,0 +1,35 @@
+[
+  [
+    "eval",
+    "(()=>{cleaning.setView('iso');cleaning.seek(0);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow '+bad.map(e=>e.textContent).join('|'));JSON.stringify({t:0,step:document.getElementById('stepTitle').textContent,status:document.getElementById('cleanState').textContent})})()"
+  ],
+  [
+    "eval",
+    "(()=>{cleaning.setView('iso');cleaning.seek(108);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow '+bad.map(e=>e.textContent).join('|'));JSON.stringify({t:108,step:document.getElementById('stepTitle').textContent,status:document.getElementById('cleanState').textContent})})()"
+  ],
+  [
+    "eval",
+    "(()=>{cleaning.setView('iso');cleaning.seek(121);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow '+bad.map(e=>e.textContent).join('|'));JSON.stringify({t:121,step:document.getElementById('stepTitle').textContent,status:document.getElementById('cleanState').textContent})})()"
+  ],
+  [
+    "eval",
+    "(()=>{cleaning.setView('iso');cleaning.seek(197);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow '+bad.map(e=>e.textContent).join('|'));JSON.stringify({t:197,step:document.getElementById('stepTitle').textContent,status:document.getElementById('cleanState').textContent})})()"
+  ],
+  [
+    "eval",
+    "(()=>{cleaning.setView('iso');cleaning.seek(238);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow '+bad.map(e=>e.textContent).join('|'));JSON.stringify({t:238,step:document.getElementById('stepTitle').textContent,status:document.getElementById('cleanState').textContent})})()"
+  ],
+  [
+    "eval",
+    "(()=>{cleaning.seek(197)})()"
+  ],
+  [
+    "shot",
+    "checks/2026-11-12-publication/page-390.png",
+    "main"
+  ],
+  [
+    "eval",
+    "(()=>{if(document.querySelectorAll('[data-step]').length!==29)throw Error('Step count');JSON.stringify({layout:'PASS',width:innerWidth,overflow:document.documentElement.scrollWidth>innerWidth})})()"
+  ]
+]
