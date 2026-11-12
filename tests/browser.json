@@ -84,18 +84,8 @@
     "(async()=>{cleaning.setView('iso');cleaning.seek(115);const proto=WebGLRenderingContext.prototype,old=proto.bufferData;let writes=0;proto.bufferData=function(...a){if(a[2]===this.STATIC_DRAW)writes++;return old.apply(this,a)};const count=fn=>{writes=0;fn();return writes},frame=()=>new Promise(requestAnimationFrame),r={};try{r.unchanged=count(()=>cleaning.seek(115));r.view=count(()=>cleaning.setView('top'));r.sameView=count(()=>cleaning.setView('top'));r.theme=count(()=>document.getElementById('theme').click());writes=0;document.getElementById('machine').style.width='calc(100% - 2px)';await frame();await frame();r.resize=writes;document.getElementById('machine').style.width='';await frame();await frame();cleaning.setView('grip');r.movingGripCamera=count(()=>cleaning.seek(16));cleaning.setView('iso');cleaning.seek(115);}finally{proto.bufferData=old}if(r.unchanged!==0||r.sameView!==0||r.view!==1||r.theme!==1||r.resize!==1||r.movingGripCamera!==1)throw Error('Static cache invalidation '+JSON.stringify(r));return JSON.stringify({staticCache:'PASS',...r})})()"
   ],
   [
-    "shot",
-    "checks/2026-11-12/desktop.png",
-    ".board"
-  ],
-  [
     "eval",
     "cleaning.seek(40)"
-  ],
-  [
-    "shot",
-    "checks/2026-11-12/ld.png",
-    ".board"
   ],
   [
     "eval",
@@ -126,11 +116,6 @@
     "if(cleaning.time!==stoppedAt)throw Error('Animation continued after loss');JSON.stringify({contextLoss:'PASS',stoppedAt,info:cleaning.info,note:document.getElementById('rendernote').textContent})"
   ],
   [
-    "shot",
-    "checks/2026-11-12/context-loss.png",
-    ".board"
-  ],
-  [
     "click",
     "#reload"
   ],
@@ -142,5 +127,13 @@
   [
     "eval",
     "if(cleaning.info.glError||cleaning.info.contextLost||!location.pathname.endsWith('/Photomask-Cleaner.html'))throw Error('Reload recovery');JSON.stringify({reload:'PASS',time:cleaning.time,glError:cleaning.info.glError})"
+  ],
+  [
+    "eval",
+    "(()=>{const results=[];for(const [t,want]of[[0,''],[108,'湿洗中'],[121,'Dry（干燥）'],[130,''],[238,'循环完成']]){cleaning.seek(t);const state=cleaning.state(),status=document.getElementById('cleanState').textContent;if(status!==want||document.getElementById('topFlow').textContent!==(state.topSpray?'开启':'关闭')||document.getElementById('diw').textContent!==(state.backDIW?'开启':'关闭'))throw Error('Process status '+t);results.push({t,status,topSpray:state.topSpray,backDIW:state.backDIW});}return JSON.stringify({status:'PASS',results})})()"
+  ],
+  [
+    "eval",
+    "(()=>{for(const t of [0,108,121,197,238]){cleaning.seek(t);if(document.documentElement.scrollWidth>innerWidth)throw Error('Page overflow');const bad=[...document.querySelectorAll('.steps button,.readouts b,.zone,.toolbar,header')].filter(e=>e.scrollWidth>e.clientWidth+1);if(bad.length)throw Error('Text overflow');}if(document.querySelectorAll('[data-step]').length!==29)throw Error('Step count');return JSON.stringify({layout:'PASS',width:innerWidth})})()"
   ]
 ]

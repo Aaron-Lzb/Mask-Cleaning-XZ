@@ -1,1 +1,0 @@
-[["eval", "cleaning.seek(115);cleaning.setView('cleaner')"], ["shot", "shots/final-mobile.png", ".board"], ["eval", "JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,webgl:cleaning.info.webgl,error:cleaning.info.glError})"], ["click", "#theme"], ["shot", "shots/final-mobile-warm.png", ".board"]]

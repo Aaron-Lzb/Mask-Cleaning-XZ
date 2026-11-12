@@ -1,7 +1,0 @@
-{
-  "samples": 9521,
-  "assemblyPairs": 30,
-  "fixedMovingPairs": 0,
-  "newPairTypes": 0,
-  "classification": "Same 30 internal assembly connections as the accepted baseline, reviewed by actual source call pairs. Not a CAD collision certification."
-}

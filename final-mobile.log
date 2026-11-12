@@ -1,5 +1,0 @@
-eval: undefined
-shot shots/final-mobile.png · readout ""
-eval: "{\"overflow\":false,\"webgl\":true,\"error\":0}"
-shot shots/final-mobile-warm.png · readout ""
-console: clean

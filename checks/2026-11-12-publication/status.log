@@ -1,2 +1,0 @@
-eval: "{\"status\":\"PASS\",\"results\":[{\"t\":0,\"status\":\"\",\"topSpray\":false,\"backDIW\":false},{\"t\":108,\"status\":\"湿洗中\",\"topSpray\":true,\"backDIW\":true},{\"t\":121,\"status\":\"Dry（干燥）\",\"topSpray\":false,\"backDIW\":false},{\"t\":130,\"status\":\"\",\"topSpray\":false,\"backDIW\":false},{\"t\":238,\"status\":\"循环完成\",\"topSpray\":false,\"backDIW\":false}]}"
-console: clean

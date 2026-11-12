@@ -1,2 +1,0 @@
-eval: "{\"samples\":80,\"cpuMedian\":17,\"cpuP95\":20.600000008940697,\"frameIntervalMedian\":17.200000002980232,\"uploadedMBperFrame\":4.7953033447265625,\"bufferCallsPerFrame\":3,\"steadyStaticUploads\":0,\"webgl\":true,\"error\":0}"
-console: clean

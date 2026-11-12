@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),crypto=require('node:crypto'),path=require('node:path');
 const {C,model,frames}=require('./model.js');
-const previous=require('./baseline-before-mask-fit/model.js');
+const previous=require('./tests/motion-baseline.cjs');
 require('./chuck-profile.js');const profile=globalThis.ChuckProfile;
 assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,'references/Chuck.png'))).digest('hex'),profile.sourceSHA256,'Chuck reference changed');
 assert.equal(C.stageRadius,64/3);

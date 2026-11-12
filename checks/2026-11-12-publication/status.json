@@ -1,6 +1,0 @@
-[
-  [
-    "eval",
-    "(()=>{const results=[];for(const [t,want]of[[0,''],[108,'湿洗中'],[121,'Dry（干燥）'],[130,''],[238,'循环完成']]){cleaning.seek(t);const state=cleaning.state(),status=document.getElementById('cleanState').textContent;if(status!==want||document.getElementById('topFlow').textContent!==(state.topSpray?'开启':'关闭')||document.getElementById('diw').textContent!==(state.backDIW?'开启':'关闭'))throw Error('Process status '+t);results.push({t,status,topSpray:state.topSpray,backDIW:state.backDIW});}return JSON.stringify({status:'PASS',results})})()"
-  ]
-]

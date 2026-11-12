@@ -87,6 +87,6 @@ hub=[]
 for pts in holes:
  x,y=np.array(pts).mean(axis=0);xx=(x-cx)*scale;yy=(cy-y)*scale
  if math.hypot(xx,yy)<5:hub=[round(xx,4),round(yy,4),round(math.sqrt(len(pts)/math.pi)*scale,4)]
-data={'source':'../Chuck.png','sourceSHA256':hashlib.sha256(source.read_bytes()).hexdigest(),'width':119,'height':round((ys.max()+1-ys.min())*scale,4),'contours':clean,'surfaceQuads':quads,'holes':centers,'supportPoints':supports,'centerHole':hub,'ignoredEtchedMarks':removed}
+data={'source':'references/Chuck.png','sourceSHA256':hashlib.sha256(source.read_bytes()).hexdigest(),'width':119,'height':round((ys.max()+1-ys.min())*scale,4),'contours':clean,'surfaceQuads':quads,'holes':centers,'supportPoints':supports,'centerHole':hub,'ignoredEtchedMarks':removed}
 (ROOT/'chuck-profile.js').write_text('/* Derived from the supplied reference, with real through-holes. */\nglobalThis.ChuckProfile='+json.dumps(data,separators=(',',':'))+';\n')
 print(json.dumps({'loops':len(clean),'vertices':sum(map(len,clean)),'surfaceQuads':len(quads),'majorSmallHoles':len(centers),'outerWidth':119,'outerHeight':data['height'],'centerHole':hub}))

@@ -1,88 +1,57 @@
-# Photomask-Cleaner · Anatomy
+# Photomask-Cleaner
 
-打开 `Photomask-Cleaner.html` 即可播放，无需联网或本地服务器。所有脚本已内嵌在该文件内。
+离线光掩模清洗设备原理演示。直接打开 `Photomask-Cleaner.html`，无需服务器或网络。
 
-这是用于展示 Photomask 清洗设备结构与运行流程的独立工程原理演示项目。主文件、模型、绘图和交互源码均位于本目录。
+仓库：[Aaron-Lzb/Photomask-Cleaner](https://github.com/Aaron-Lzb/Photomask-Cleaner)。
 
-## 最终发布（2026-11-12）
+## 使用
 
-仓库：[Aaron-Lzb/Photomask-Cleaner](https://github.com/Aaron-Lzb/Photomask-Cleaner)（公开）。
+- 播放、暂停、重播；支持0.5×、1×、2×，可拖动进度或选择29个步骤。
+- 支持斜视、正视、俯视、Cleaner特写、Grip侧视，以及暖灰/纯白主题。
+- 非交互区域：空格播放/暂停，左右箭头切步，Home回起点；按钮保留原生键盘操作。
+- WebGL绘图中断时暂停并提示重新加载；重新加载后回到起点暂停。
 
-- 精简标题、区域说明、操作提示与29步流程文案；统一LD Arm、Chuck Stage等术语，保留运动方向、喷淋状态和示意限制。
-- 动态状态集中显示湿洗、Dry和完成状态，删除重复流程说明。移动端优化区域说明、步骤按钮、读数和术语换行。
-- 模型、29步时间点、运动状态、渲染与交互机制保持不变。校验、浏览器连续播放及桌面/手机视口检查通过，证据见`checks/2026-11-12-publication/`。
+## 文件用途
 
-## 前轮本地优化与更名（2026-11-12）
-- 当前目录与正式入口统一为`Photomask-Cleaner` / `Photomask-Cleaner.html`。XZ继续表示Traverser运动轴。历史快照保留当时的文件名，不作为当前构建入口；历史验证资料全部保留。
-- WebGL上下文丢失后暂停动画、禁用播放控件，显示中断提示与重新加载按钮。重新加载会回到起点并保持暂停，按播放后重新开始，不自动重建GPU资源。
-- Chuck边界与Arm宽度统计仅计算一次；静态不透明主体保存在独立GPU缓冲中，视角、尺寸或主题变化时才更新。Grip跟随视角的相机位置变化仍会必要刷新。
-- 三轮同条件测试：单帧处理时间中位数17.0→15.1 ms，每帧顶点上传4.80→1.43 MiB；六个关键三维画面的像素哈希完全一致。详见`checks/2026-11-12/`与`VALIDATION.md`。
-- 空格等全局快捷键仅在非交互区域生效，按钮、输入框等保留原生键盘操作。Mask图例与实际淡蓝材质一致。
-- 该轮仅做本地修改和验证；最终发布信息见上文。
+| 文件 | 用途 |
+|---|---|
+| `Photomask-Cleaner.html` | 自包含的正式离线文件 |
+| `model.js` | 29步时序、坐标和工艺状态 |
+| `scene.js` / `app.js` / `template.html` | 三维绘制、交互和页面源码 |
+| `chuck-profile.js` | Chuck轮廓、开孔与Pin数据 |
+| `build.mjs` | 将源码嵌入正式HTML |
+| `references/Chuck.png` / `trace-chuck.py` | Chuck参考图与轮廓生成工具 |
+| `verify.cjs` | 流程、交接、夹持及轮廓回归检查 |
+| `clearance-check.cjs` / `geometry-audit.cjs` | LD专项及实际模型全程干涉检查 |
+| `tests/motion-baseline.cjs` | 仅供流程回归使用的已验收运动对照，不参与运行或构建 |
+| `tests/browser.json` / `tests/playback.json` | 当前交互/布局和完整播放的浏览器测试动作 |
+| `VALIDATION.md` | 当前约束、必要验证结论及检查边界 |
 
-## 前轮：全流程干涉复核与配色
-- 修正LD滑动柱座与导轨后挡块重叠、Traverser升降导向件与后横轨重叠；Mask凸起装饰边改为表面标线。
-- 配色：暖灰地面、中性银灰设备、低饱和青绿色运动件、淡蓝色半透明玻璃质感Mask、石墨灰Chuck；界面与液路图例同步统一。
-- `model.js`和`app.js`与本轮前逐字节一致：动作、时序、夹持位置及工艺信号不变。
-- 新离线`geometry-audit.cjs`直接提取实际模型基本几何，检查完整238秒，配合原流程/包络测试与浏览器复核。运行：`AUDIT_DT=.025 node geometry-audit.cjs`；不会向动画加入碰撞系统。
-- 最新检查范围、发现、正常装配重叠分类与限制详见`VALIDATION.md`。修改前源码保存在`baseline-before-palette-audit/`。
+## 构建与验证
 
-## Mask / LD Arm适配
-Mask按8 Pin内侧范围居中缩至72.6892×82.6428示意单位，边缘留0.6间隙；四角背面支撑及Mask取放接触面已适配。Mask落在原有中央连接环顶面，Chuck和Pin保持不变。详情见`VALIDATION.md`。
+在项目根目录运行，需Node.js：
 
-## Chuck厚度更新
-统一Chuck模型局部Z尺寸为上一版50%（总厚9→4.5示意单位），X/Y轮廓与孔位不变；Mask及Grip接触高度已适配，原动作时序保留。修改前版本见`baseline-before-thickness/`。
-
-## 操作
-- 播放/暂停、重播、0.5×/1×/2×；拖动进度或点击29段步骤。
-- 斜视、正面、俯视、Cleaner特写、Grip侧视；暖灰/纯白，两种均为浅色主题。
-- 空格播放/暂停，左右方向键切换步骤，Home回起点。
-- 默认暂停，不自动循环；播放结束停留。系统减少动态效果时不自动重播。
-
-## 本轮内部托架与完整卸载归位
-- 移除Stocker外部固定支架。每层内置伸缩托持机构，顶层托架带Chuck伸出；Chuck被提走后空托架缩回。
-- 清洗组合体回Stage后共同顺时针90°；按用户确认，先上提Mask，再移入空Arm接料，下降交接后由Arm带水平Mask回LD口。
-- 空Chuck逆时针90°恢复前后Grip方向；Traverser送至右侧交接位，原层内部托架伸出接料，头部退出后带Chuck缩回入库。
-- `baseline-before-unload/`保存本轮修改前版本；最新时序见`UNLOAD-PLAN.md`，验收见`VALIDATION.md`。原0–156秒姿态与工艺信号保持。
-
-## 前轮转向、待机与回搬优化（保留）
-- 空Chuck放上Stage后，按俯视顺时针转90°；Mask放上后，组合体逆时针转90°。Stage始终固定，Chuck尺寸不变。
-- 组合体放入Cleaner后，Traverser上提退出并回LD等待；清洗结束且旋转停止对位后，再去Cleaner取回组合体，放回Stage。
-- 按上级目录`traverser arm.png`重建细长双梁悬臂；仅前后两组Grip，接触面对应Chuck前后实心突出块。Grip侧视可检查接触关系。
-- 保留已确认的图片派生八臂Chuck、Stocker右推交接、1/3直径固定Stage及既有LD送料顺序。
-- `baseline-before-return/`保留本轮修改前版本；`RETURN-PLAN.md`与`VALIDATION.md`记录本轮变更和验收。
-
-## 前轮局部修正（保留）
-- Stage顶盘直径为初版的1/3：128→42.6667示意单位；固定顶面高度104，Chuck整体外廓宽119不变。
-- Stocker为三层，顶层先完全右推至架外交接位，再由Traverser下降取走。
-- 用户已确认新版Chuck按图片实际八条连接臂建模，所有工位共用同一外轮廓及真实开孔网格。
-- `baseline-before-stock-fix/`与`STOCK-PLAN.md`保留该轮历史记录。
-
-## 前轮视觉建模（结构保留，配色已更新）
-- 原白灰/浅蓝方案已由本轮暖灰、青绿、石墨灰和淡蓝Mask方案替代。
-- Cleaner增加留出后部悬臂通道的腔体框架、透明侧护罩、开口集液槽、圆润主轴、三路喷嘴与下部DIW。
-- 工艺液蓝/橙/绿软锥喷淋、流动液滴、薄液膜、旋转方向箭头；Dry起点关闭喷淋。
-- 构件使用小倒角、平滑圆柱法线和柔和金属高光。
-- `baseline-before-visual/`和`visual-check.log`保留前轮视觉优化记录；本轮前段模型按授权更新，以`stock-check.log`和下游姿态回归为当前证据。
-
-## 本版明确的机构关系
-- 三大区域从左到右：3层 Chuck Stocker → LD/ULD → Cleaner。
-- Rear Traverser 滑座在后方；固定水平悬臂把取放头连接到工位中心线。只有X/Z运动，没有Y伸缩或前后送料。
-- LD arm 从前方沿Y向后送料：75°承接 → 水平 → 到Chuck上方 → Traverser向上取片 → arm回前方 → Traverser下降放片。
-- Stage 是圆形固定装置，无升降部件或动画。
-- 同一新版八臂多孔Chuck几何用于所有位置；中央和端部孔为真实几何开孔。
-- 上方三路喷淋只示意多液体来源；湿段背面DIW连续，Dry开始时关闭。
-
-## 源码与重建
-`model.js` 是纯时序与空间模型；`chuck-profile.js`是`references/Chuck.png`派生的轮廓/开孔数据；`scene.js` 用WebGL深度测试显示三维实体；`app.js` 提供控件和状态。无WebGL时提供兼容投影，遮挡精度低于主模式。
-
-```
+```sh
 node build.mjs
 node verify.cjs
+node clearance-check.cjs
+AUDIT_DT=.025 node geometry-audit.cjs > /tmp/photomask-geometry.json
 ```
 
-Chuck轮廓原图随项目保存在`references/Chuck.png`；历史Cleaner原理图与Outline Drawing未包含在当前项目目录中。`PLAN.md`保留最初计划，卸载时序见`UNLOAD-PLAN.md`；最新修改与检查结论以`VALIDATION.md`最上方记录为准，历史记录位于其后。
+浏览器动作使用现有Anatomy技能的`scripts/drive.mjs`，不需要给项目安装新依赖；将下方`<anatomy>`替换为该技能目录：
 
-几何尺寸、时长、喷淋与旋转速度均为示意；Grip接触与短程竖直接合为原理示意，未按带尺寸制造图确认；未展开完整夹紧执行器设计。可变size arm仅示意可调结构，未展开尺寸切换。未进行CAD精度干涉、强度或真实设备可达性认证。
+```sh
+node <anatomy>/scripts/drive.mjs Photomask-Cleaner.html --actions tests/browser.json --height 1300
+node <anatomy>/scripts/drive.mjs Photomask-Cleaner.html --actions tests/browser.json --width 390 --height 1000
+node <anatomy>/scripts/drive.mjs Photomask-Cleaner.html --actions tests/playback.json --height 1300
+```
 
-重新派生Chuck轮廓时运行`trace-chuck.py`（需要Pillow和NumPy）；普通HTML打开与Node重建不需要Python。原始图片只读。
+测试只向终端输出结果，不在项目中生成截图或日志。几何工具输出候选重叠，需按`VALIDATION.md`区分正常装配；不能仅以退出码判定无碰撞。
+
+重新生成Chuck轮廓时才需要Python、Pillow和NumPy，并运行`python3 trace-chuck.py`；日常使用、构建与Node检查不需要它们。
+
+## 模型边界
+
+Traverser仅沿X/Z移动，LD Arm执行75°翻转与前后送料，圆形Chuck Stage固定，Grip仅前后两组。湿洗时背面DIW持续开启，Dry开始时停止。
+
+尺寸、时长、转速及液路均为工程示意，不作为制造参数或工艺配方。固定悬臂、Grip接合与可变尺寸机构采用简化表达；无WebGL的兼容投影遮挡精度较低。
