@@ -42,6 +42,22 @@ header>div{min-width:0}.board-head{align-items:center}.board-head span:last-chil
  .steps button{font-size:12px;padding:10px;gap:7px;min-height:52px}.steps span{width:20px;height:20px;font-size:10px}.info{padding:16px;gap:20px}.readouts{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}.readouts b{font-size:12px}
  .board-foot{font-size:10px;flex-wrap:wrap;row-gap:4px}.board-foot span:first-child{max-width:100%}.invariants{font-size:11px;line-height:1.7}
 }
+
+/* Wide desktop: the process navigation and live readouts share the drawing's height. */
+@media(min-width:1500px){
+ main{max-width:1920px;padding:16px 24px;display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:12px 18px;align-items:start}
+ header{grid-column:1/-1}header>div{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}header h1{font-size:26px;margin:0}header p{font-size:13px}
+ .board{grid-column:1;grid-row:2/4;margin:0;min-width:0}
+ canvas{height:clamp(380px,calc(100vh - 400px),660px);aspect-ratio:auto}
+ .board-head,.board-foot{padding:7px 14px}.badge{top:10px;left:14px}.orientation{left:14px;bottom:7px}
+ .fluid-legend{padding:8px 14px;gap:8px 14px}.zone{padding:8px 14px}.toolbar{padding:9px 14px}
+ .steps{grid-column:2;grid-row:2;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0}
+ .steps button{font-size:12px;padding:7px 8px;gap:6px;min-height:40px}.steps span{width:21px;height:21px;font-size:11px}
+ .info{grid-column:2;grid-row:3;margin:0;padding:0;grid-template-columns:1fr;gap:12px}
+ .info h2{margin:4px 0 6px}.info p{margin:4px 0;font-size:13px}.readouts{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}.readouts div{padding-left:8px}.readouts b{margin-top:3px}
+ .invariants{grid-column:1/-1;margin:0;padding:8px 14px}
+ footer{grid-column:1/-1;margin:0;display:flex;gap:24px;flex-wrap:wrap}footer p{margin:0}
+}
 </style></head><body><main>
 <header><div><div class="eyebrow">工程原理演示</div><h1>Photomask-Cleaner</h1><p>光掩模装载、旋转清洗与卸载流程</p></div></header>
 <section class="board" aria-label="工程流程交互图"><div class="board-head"><span>FIG 01 · 设备结构</span><span id="viewText"></span></div><div class="viewport"><div class="badge">后部 Traverser · X ↔ / Z ↕</div><canvas id="machine" role="img" aria-label="左侧加宽三层Chuck&nbsp;Stocker与右推出料交接位，中间前置LD&nbsp;Arm及其后方固定圆形Stage，右侧Cleaner，后部全线XZ Traverser"></canvas><div id="renderFailure" class="render-failure" role="alert" hidden><p>绘图中断，动画已暂停。<br>重新加载后可重新播放。</p><button id="reload">重新加载</button></div><div class="orientation">前方 LD 口 ↓ &nbsp; · &nbsp; 后方 ↑</div></div><div class="fluid-legend"><span class="legend-title">对象与液路</span><span><i style="background:#b9d8e8"></i>Mask</span><span><i style="background:#535c60"></i>Chuck</span><span><i style="background:#347b76"></i>运动机构</span><span><i class="liquid-a"></i>工艺液 A</span><span><i class="liquid-b"></i>工艺液 B</span><span><i class="liquid-c"></i>工艺液 C</span><span><i class="liquid-diw"></i>背面 DIW ↑</span><small>液路颜色为示意</small></div><div class="zones"><div class="zone"><b>01 · Chuck&nbsp;Stocker</b><small>三层存放 · 右侧交接</small></div><div class="zone"><b>02 · LD/ULD</b><small>前方 LD&nbsp;Arm · 后方 Chuck&nbsp;Stage</small></div><div class="zone"><b>03 · Cleaner</b><small>上方喷淋 · 背面 DIW</small></div></div>
